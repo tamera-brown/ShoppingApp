@@ -1,0 +1,50 @@
+<h3>Registration Form</h3>
+<div class="card">  
+    <div class="card-body">  
+      <form [formGroup]="angForm" novalidate>  
+
+        <div class="form-group">  
+          <label class="col-md-4"> Name</label>  
+          <input type="text" class="form-control" formControlName="CustomerName" #CustomerName />  
+        </div>  
+        <div *ngIf="angForm.controls['CustomerName'].invalid && (angForm.controls['CustomerName'].dirty || angForm.controls['CustomerName'].touched)" class="alert-danger">
+          <div *ngIf="angForm.controls['CustomerName'].errors.required">  
+             Name is required.  
+          </div>  
+        </div>
+
+        <div class="form-group">  
+            <label class="col-md-4">Email</label>  
+            <input type="text" class="form-control"formControlName="CustomerEmail" #CustomerEmail />  
+          </div>  
+          <div *ngIf="angForm.controls['CustomerEmail'].invalid && (angForm.controls['CustomerEmail'].dirty || angForm.controls['CustomerEmail'].touched)" class="alert-danger">
+            <div *ngIf="angForm.controls['CustomerEmail'].errors.required">  
+               Email is required.  
+            </div>  
+          </div>
+          
+            <div class="form-group">  
+          <label class="col-md-4">Username</label>  
+          <input type="text" class="form-control" formControlName="CustomerUsername" #CustomerUsername />  
+        </div>  
+        <div *ngIf="angForm.controls['CustomerUsername'].invalid && (angForm.controls['CustomerUsername'].dirty || angForm.controls['CustomerUsername'].touched)" class="alert-danger">
+          <div *ngIf="angForm.controls['CustomerUsername'].errors.required">  
+             Username is required.  
+          </div>  
+        </div>
+        
+        <div class="form-group">  
+            <label class="col-md-4">Password</label>  
+            <input type="password" class="form-control" formControlName="CustomerPassword" #CustomerPassword  />  
+          </div>  
+          <div *ngIf="angForm.controls['CustomerPassword'].invalid && (angForm.controls['CustomerPassword'].dirty || angForm.controls['CustomerPassword'].touched)" class="alert-danger">
+            <div *ngIf="angForm.controls['CustomerPassword'].errors.required">  
+               Password is required.  
+            </div>  
+          </div>
+        <div class="form-group">  
+          <button (click) = "addCustomer(CustomerUsername.value,CustomerName.value,CustomerEmail.value,CustomerPassword.value)"type="submit" class="btn btn-success" [disabled]="angForm.pristine || angForm.invalid" >Register</button> 
+          </div>  
+      </form>  
+    </div>  
+  </div>  
