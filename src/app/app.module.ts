@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
-import {CustomersService} from './customers.service';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import {CustomersService} from './customers.service';
     SlimLoadingBarModule,
     ReactiveFormsModule
   ],
-  providers: [CustomersService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
