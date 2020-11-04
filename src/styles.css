@@ -1,2 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/ng2-slim-loading-bar/style.css";  
+.parallax{
+    
+    /* Image used */
+    background-image: url('../images//photo-1519567241046-7f570eee3ce6.jpg');
+    
+  /* Full height */
+  height: 100%; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

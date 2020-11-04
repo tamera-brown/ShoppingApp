@@ -9,12 +9,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
-
+import {CustomerService} from './customer.service';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddCustomerComponent
+    AddCustomerComponent,
+    LoginComponent,
+    HomeComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +30,7 @@ import { AddCustomerComponent } from './add-customer/add-customer.component';
     SlimLoadingBarModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

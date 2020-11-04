@@ -13,10 +13,10 @@ import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
   }  
   createForm() {  
     this.angForm = this.fb.group({  
-      CustomerName: ['', Validators.required ],  
-      CustomerEmail: ['', Validators.required ],  
-      CustomerUsername: ['', Validators.required ],
-      CustomerPassword: ['', Validators.required]
+      Name: ['', Validators.required ],  
+      Email: ['', Validators.required,Validators.email ],  
+      Username: ['', Validators.required ],
+      Password: ['', Validators.required, Validators.minLength(8),Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')]
     });  
   }  
   

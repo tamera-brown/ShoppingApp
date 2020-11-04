@@ -1,31 +1,31 @@
 var express = require('express'),  
     path = require('path'),  
     bodyParser = require('body-parser'),  
-   // cors = require('cors'),  
+    cors = require('cors'),  
+   
     mysql = require('mysql'), 
     logger=require("./Middleware/middleware");
     const port = process.env.PORT || 8080; 
     const host='localhost'; 
+
    
 
-//const customerRoutes = require('./routes/customer.route');
-   
+
     app = express(); 
-    // var corsOptions={
-    //     origin:"http//localhost:8081"
-    // }
-
-    
-
     // init middleware
-     app.use(logger);
+    app.use(logger);
     app.use(bodyParser.json()); 
+    app.use(cors());
+   
 
-    //app.use(cors(corsOptions));  
+
+ 
 
     // Handle form data
 app.use(express.urlencoded({extended:false}));
   
+    
+
     
     const mysqlConnection=mysql.createConnection({
         host:'localhost',
@@ -36,6 +36,9 @@ app.use(express.urlencoded({extended:false}));
      
     
     });
+
+    
+    
     // open the MySQL connection
     mysqlConnection.connect((err)=>{
     
@@ -48,6 +51,9 @@ app.use(express.urlencoded({extended:false}));
             console.log('DB could not connect\n Error: '+ JSON.stringify(err,undefined,2));
         }
     });
+
+    
+    
     //Get all users
 app.get('/admin/users',(req,res)=>{
     var selectStatement= 'SELECT * FROM users';
@@ -109,7 +115,16 @@ mysqlConnection.query(OneUserDetails,(err,result,fields)=>{
     Object.keys(result).forEach(function(key) {
         var row = result[key];
         if(row.user_id==req.params.id){
-            var updateStatement=
+            var updateStatement=`UPDATE users SET user_id='${UpdateUser.user_id}',name='${UpdateUser.name}',email='${UpdateUser.email}',password='${UpdateUser.password}',role='${UpdateUser.role}'`;
+            mysqlConnection.query(updateStatement,(err)=>{
+                if(!err){
+                   
+                    res.send("User updated");
+                }
+                else{
+                    res.status(400).json({msg: 'error with update'});
+                }
+            });
         }
         else{
             res.status(400).json({msg: `No user with user_id ${req.params.id}`});
