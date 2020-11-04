@@ -24,13 +24,6 @@ var express = require('express'),
     // Handle form data
 app.use(express.urlencoded({extended:false}));
   
-// built in middleware to serve static content just as images, css, html etc
-app.use(express.static(path.join(__dirname, '../dist/ShoppingApp')));
- 
-// // all get requests will point to angular's index.html in dist folder
-app.get('/*',async (req,res)=>{
-    res.sendFile(path.resolve(__dirname,'../dist/ShoppingApp','index.html'))
-});
 
     
     const mysqlConnection=mysql.createConnection({
@@ -43,6 +36,7 @@ app.get('/*',async (req,res)=>{
     
     });
 
+ 
     
     
     // open the MySQL connection
@@ -58,7 +52,13 @@ app.get('/*',async (req,res)=>{
         }
     });
 
-    
+     // built in middleware to serve static content just as images, css, html etc
+ app.use(express.static(path.join(__dirname, '../dist/ShoppingApp')));
+   
+ // all get requests will point to angular's index.html in dist folder
+app.get('/*',async (req,res)=>{
+    res.sendFile(path.resolve(__dirname,'../dist/ShoppingApp','index.html'))
+});
     
     //Get all users
 app.get('/admin/users',(req,res)=>{
@@ -164,7 +164,8 @@ mysqlConnection.query(OneUserDetails,(err,result,fields)=>{
   app.get('/',(req,res)=>{
       res.json({msg: 'Welcome to Express Server'});
   });
-     
+
+ 
   
   app.listen(port, host,()=>{  
      console.log('Express server is listening on port ' + port);  
